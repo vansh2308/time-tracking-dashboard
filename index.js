@@ -6,6 +6,16 @@ const prev = document.getElementsByClassName("prev");
 
 
 let flag = "weekly";
+fetch("./data.json")
+.then((response)=>{
+  return response.json();
+})
+.then((jsondata) => {
+  for(let k=0; k<6; k++){
+    current[k].innerHTML = `${jsondata[k]["timeframes"][flag]["current"]}Hrs`;
+    prev[k].innerHTML = `Last Week - ${jsondata[k]["timeframes"][flag]["previous"]}hrs`;
+  }
+})
 
 
 for(let i=0; i<3; i++){
